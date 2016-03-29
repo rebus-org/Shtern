@@ -36,7 +36,7 @@ echo Packing...
 echo Creating deploy dir %deploydir%
 mkdir %deploydir%
 
-%nuget% pack %tiketdir%\Shtern.nuspec -OutputDirectory %deploydir% -Version %version%
+%nuget% pack %shterndir%\Shtern.nuspec -OutputDirectory %deploydir% -Version %version%
 
 echo Tagging...
 
