@@ -7,7 +7,7 @@ namespace Test
     {
         static void Main()
         {
-            var password = Password.ReadLine(prompt: "Your password, please > ", mask: "");
+            var password = Password.ReadLine(prompt: "Your password, please > ");
 
             Console.WriteLine($"Here it is: {password}");
         }
