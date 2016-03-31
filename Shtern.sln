@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{4A96
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shtern", "Shtern\Shtern.csproj", "{C76C82D1-E514-417C-B432-9F5E95AA49BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{827AC2C5-548F-4DA3-BBDA-C67B2E8CB7BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{C76C82D1-E514-417C-B432-9F5E95AA49BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C76C82D1-E514-417C-B432-9F5E95AA49BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C76C82D1-E514-417C-B432-9F5E95AA49BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{827AC2C5-548F-4DA3-BBDA-C67B2E8CB7BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{827AC2C5-548F-4DA3-BBDA-C67B2E8CB7BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{827AC2C5-548F-4DA3-BBDA-C67B2E8CB7BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{827AC2C5-548F-4DA3-BBDA-C67B2E8CB7BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

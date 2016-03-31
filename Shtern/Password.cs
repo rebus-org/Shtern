@@ -10,12 +10,20 @@ namespace Shtern
     public static class Password
     {
         /// <summary>
-        /// Reads a line from the console, outputting a mask character (default: *) for each character entered.
-        /// The mast character can be customized by setting <paramref name="maskCharacter"/> to something else
+        /// Reads a line from the console, optionally outputting a mask character for each character entered.
+        /// The mast character can be customized by setting <paramref name="mask"/> to something else.
+        /// By default the mask character is an empty string because that is the most secure.
+        /// Setting <paramref name="prompt"/> to something like "Please type your password > " provides an easy 
+        /// way to have an inline prompt telling the user what to do
         /// </summary>
-        public static string ReadLine(char maskCharacter = '*')
+        public static string ReadLine(string mask = "", string prompt = null)
         {
             var enteredCharacters = new Stack<char>();
+
+            if (prompt != null)
+            {
+                Console.Write(prompt);
+            }
 
             while (true)
             {
@@ -29,15 +37,18 @@ namespace Shtern
                 {
                     if (enteredCharacters.Count > 0)
                     {
-                        Console.CursorLeft--;
-                        Console.Write(" ");
-                        Console.CursorLeft--;
+                        var length = mask.Length;
+
+                        Console.CursorLeft -= length;
+                        Console.Write(new string(' ', length));
+                        Console.CursorLeft -= length;
+
                         enteredCharacters.Pop();
                     }
                     continue;
                 }
 
-                Console.Write(maskCharacter);
+                Console.Write(mask);
 
                 enteredCharacters.Push(consoleKeyInfo.KeyChar);
             }
