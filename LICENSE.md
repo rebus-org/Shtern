@@ -1,4 +1,4 @@
-Tiket is licensed under [The MIT License (MIT)](http://opensource.org/licenses/MIT)
+Shtern is licensed under [The MIT License (MIT)](http://opensource.org/licenses/MIT)
 
 # The MIT License (MIT)
 
