@@ -12,3 +12,7 @@
 ## 2.1.0
 
 * Add `Options` prompt thing with arrows and stuff
+
+## 3.0.0
+
+* Add ability to customize `arrow` and changed it to `Options.Select` (maybe in the future there will be `Options.MultiSelect`)

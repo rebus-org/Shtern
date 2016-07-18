@@ -14,13 +14,15 @@ namespace Test
 
         static void TestOptions()
         {
-            var answer = Options.Prompt("Which Javascript transpizzle would you like to use to mangle your shizzle?",
-                new[]
+            Console.WriteLine("Which Javascrizzle transpizzle would you like to use to compizzle your shizzle?");
+
+            var answer = Options.Select(new[]
                 {
                     new {Id = "babel", Name = "Babel"},
                     new {Id = "ts", Name = "TypeScript"},
                     new {Id = "whatever", Name = "Whateverleavemyjavascriptalone!"},
-                });
+                },
+                arrow: " > ");
 
             Console.WriteLine($"Selected option: {answer}");
         }

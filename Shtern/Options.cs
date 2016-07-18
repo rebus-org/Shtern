@@ -4,9 +4,16 @@ using System.Linq;
 
 namespace Shtern
 {
+    /// <summary>
+    /// Call <see cref="Select{TOption}"/> to show a list of options with an arrow for selecting one of them
+    /// </summary>
     public static class Options
     {
-        public static TOption Prompt<TOption>(string text, IEnumerable<TOption> options)
+        /// <summary>
+        /// Selects one option out of the given list, returning the selected option. <code>default(TOption)</code> is returned if
+        /// ESC is pressed. Change the displayed pointer by setting <paramref name="arrow"/>
+        /// </summary>
+        public static TOption Select<TOption>(IEnumerable<TOption> options, string arrow = " --> ")
         {
             var list = options.ToList();
 
@@ -14,8 +21,6 @@ namespace Shtern
             {
                 throw new ArgumentException("Cannot prompt without any options");
             }
-
-            Console.WriteLine(text);
 
             var selectedIndex = 0;
 
@@ -29,10 +34,10 @@ namespace Shtern
 
                 selectedIndex = newSelectedIndex;
 
-                Paint(list, selectedIndex, initialCursorTop);
+                Paint(list, selectedIndex, initialCursorTop, arrow);
             };
 
-            Paint(list, selectedIndex, initialCursorTop);
+            Paint(list, selectedIndex, initialCursorTop, arrow);
 
             while (true)
             {
@@ -65,14 +70,14 @@ namespace Shtern
             return default(TOption);
         }
 
-        static void Paint<TOption>(List<TOption> list, int selectedIndex, int initialCursorTop)
+        static void Paint<TOption>(IEnumerable<TOption> list, int selectedIndex, int initialCursorTop, string arrow)
         {
             Console.CursorTop = initialCursorTop;
 
             var lines = list
                 .Select((option, index) => selectedIndex == index
-                    ? $" --> {option}"
-                    : $"     {option}")
+                    ? $"{arrow}{option}"
+                    : $"{new string(' ', arrow.Length)}{option}")
                 .ToList();
 
             Console.WriteLine(string.Join(Environment.NewLine, lines));
