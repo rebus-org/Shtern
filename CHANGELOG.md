@@ -13,5 +13,5 @@
 ## 3.0.0
 * Add ability to customize `arrow` and changed it to `Options.Select` (maybe in the future there will be `Options.MultiSelect`)
 
-## 4.0.0
+## 4.0.1
 * Target .NET Standard 2.0
