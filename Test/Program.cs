@@ -9,7 +9,7 @@ namespace Test
         {
             TestOptions();
 
-            //            TestPassword();
+            TestPassword();
         }
 
         static void TestOptions()

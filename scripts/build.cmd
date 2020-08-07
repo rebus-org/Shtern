@@ -1,49 +1,46 @@
 @echo off
 
-set version=%1
-set currentdir=%~dp0
-set root=%currentdir%\..
-set toolsdir=%root%\tools
-set nuget=%toolsdir%\NuGet\NuGet.exe
-set shterndir=%root%\Shtern
-set releasedir=%tiketdir%\bin\Release
-set deploydir=%root%\deploy
+set scriptsdir=%~dp0
+set root=%scriptsdir%\..
+set project=%1
+set version=%2
+
+if "%project%"=="" (
+	echo Please invoke the build script with a project name as its first argument.
+	echo.
+	goto exit_fail
+)
 
 if "%version%"=="" (
-	echo Please specify which version to build as a parameter.
+	echo Please invoke the build script with a version as its second argument.
 	echo.
-	goto exit
+	goto exit_fail
 )
 
-echo This will build, tag, and release version %version% of Shtern.
-echo.
-echo Please make sure that all changes have been properly committed!
-pause
+set Version=%version%
 
+pushd %root%
 
-if exist "%deploydir%" (
-	echo Cleaning up old deploy dir %deploydir%
-	rd %deploydir% /s/q
+dotnet restore
+if %ERRORLEVEL% neq 0 (
+	popd
+ 	goto exit_fail
 )
 
-echo Building version %version%
+dotnet build "%root%\%project%" -c Release
+if %ERRORLEVEL% neq 0 (
+	popd
+ 	goto exit_fail
+)
 
-msbuild %shterndir%\Shtern.csproj /p:Configuration=Release
+popd
 
 
-echo Packing...
 
-echo Creating deploy dir %deploydir%
-mkdir %deploydir%
 
-%nuget% pack %shterndir%\Shtern.nuspec -OutputDirectory %deploydir% -Version %version%
 
-echo Tagging...
 
-git tag %version%
-
-echo Pushing to NuGet.org...
-
-%nuget% push %deploydir%\*.nupkg
-
-:exit
+goto exit_success
+:exit_fail
+exit /b 1
+:exit_success
